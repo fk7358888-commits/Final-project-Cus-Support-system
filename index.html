@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hearthline customer support workspace for service businesses.">
+  <title>Hearthline Support Workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-lockup">
+        <div class="brand-mark">h</div>
+        <div>
+          <strong>hearthline</strong>
+          <span>customer support</span>
+        </div>
+      </div>
+
+      <div class="workspace-label">Workspaces</div>
+      <nav class="workspace-nav" aria-label="Business workspaces">
+        <button class="workspace-item is-active" data-workspace="cafe" type="button">
+          <span class="workspace-icon cafe-icon">C</span>
+          <span><strong>Ember &amp; Grain</strong><small>Cafe</small></span>
+          <span class="unread-count">8</span>
+        </button>
+        <button class="workspace-item" data-workspace="salon" type="button">
+          <span class="workspace-icon salon-icon">S</span>
+          <span><strong>Vela Studio</strong><small>Beauty salon</small></span>
+          <span class="unread-count">4</span>
+        </button>
+        <button class="workspace-item" data-workspace="quran" type="button">
+          <span class="workspace-icon quran-icon">Q</span>
+          <span><strong>Noor Academy</strong><small>Quran &amp; Tajweed</small></span>
+          <span class="unread-count">6</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-section">
+        <div class="workspace-label">Support</div>
+        <nav class="side-nav" aria-label="Support navigation">
+          <button class="side-nav-item is-selected" type="button"><span class="nav-glyph">in</span> Inbox <span class="nav-number">18</span></button>
+          <button class="side-nav-item" type="button"><span class="nav-glyph">at</span> Mentions <span class="nav-number">3</span></button>
+          <button class="side-nav-item" id="customerInfoButton" type="button"><span class="nav-glyph">+</span> Customer information</button>
+          <button class="side-nav-item" id="analyticsButton" type="button"><span class="nav-glyph">#</span> Analytics</button>
+          <button class="side-nav-item" type="button"><span class="nav-glyph">+</span> Automations</button>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="team-card">
+          <div class="team-avatars"><span>AM</span><span>RK</span><span>+4</span></div>
+          <div><strong>Support team</strong><small>6 teammates online</small></div>
+          <button class="icon-button quiet" type="button" aria-label="Team settings">...</button>
+        </div>
+        <button class="profile-row" type="button">
+          <span class="avatar avatar-mint">AL</span>
+          <span><strong>Faria Lane</strong><small>Administrator</small></span>
+          <span class="chevron">⌄</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu icon-button" id="mobileMenu" type="button" aria-label="Open navigation">≡</button>
+        <div class="breadcrumb"><span>Support</span><span>/</span><strong id="breadcrumbWorkspace">Ember &amp; Grain</strong></div>
+        <div class="topbar-actions">
+          <button class="icon-button" type="button" aria-label="Search">⌕</button>
+          <button class="icon-button notification-button" type="button" aria-label="Notifications">♢<i></i></button>
+          <button class="help-button" type="button"><span>?</span> Help center</button>
+        </div>
+      </header>
+
+      <div class="content-wrap">
+        <section class="page-heading">
+          <div>
+            <p class="eyebrow" id="dateLabel">Tuesday, September 24, 2024</p>
+            <h1>Good morning, Faria <span aria-hidden="true">✦</span></h1>
+            <p class="workspace-tagline">Beauty, Faith and Flavor all in one place.</p>
+            <p class="heading-copy">Here is what needs your attention across your support channels.</p>
+          </div>
+          <button class="primary-button" id="newTicketButton" type="button"><span>+</span> Customer information</button>
+        </section>
+
+        <section class="metric-grid" aria-label="Support metrics">
+          <article class="metric-card metric-card-featured">
+            <div class="metric-top"><span class="metric-label">Open tickets</span><span class="metric-icon">↗</span></div>
+            <strong class="metric-value" id="openTickets">18</strong>
+            <div class="metric-bottom"><span class="trend-up">↑ 12%</span><span>vs last week</span><span class="mini-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-top"><span class="metric-label">First response time</span><span class="metric-icon neutral">◷</span></div>
+            <strong class="metric-value" id="responseTime">12m</strong>
+            <div class="metric-bottom"><span class="trend-up">↓ 18%</span><span>vs last week</span><span class="metric-status">Excellent</span></div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-top"><span class="metric-label">Customer satisfaction</span><span class="metric-icon neutral">♡</span></div>
+            <strong class="metric-value" id="satisfaction">96.4%</strong>
+            <div class="metric-bottom"><span class="trend-up">↑ 4.2%</span><span>vs last week</span><span class="rating-dots"><i></i><i></i><i></i><i></i><i></i></span></div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-top"><span class="metric-label">Resolved this week</span><span class="metric-icon neutral">✓</span></div>
+            <strong class="metric-value" id="resolvedTickets">42</strong>
+            <div class="metric-bottom"><span class="trend-up">↑ 9%</span><span>vs last week</span><span class="resolved-ring">96%</span></div>
+          </article>
+        </section>
+
+        <section class="dashboard-grid">
+          <div class="inbox-panel panel">
+            <div class="panel-heading">
+              <div><div class="section-title-row"><h2>Inbox</h2><span class="count-pill" id="inboxCount">18</span></div><p>Stay on top of every customer conversation.</p></div>
+              <button class="icon-button" type="button" aria-label="Inbox options">...</button>
+            </div>
+            <div class="inbox-toolbar">
+              <div class="filter-tabs" role="tablist" aria-label="Ticket filters">
+                <button class="filter-tab is-active" data-filter="all" type="button">All <span id="allCount">18</span></button>
+                <button class="filter-tab" data-filter="mine" type="button">Assigned to me <span>7</span></button>
+                <button class="filter-tab" data-filter="unassigned" type="button">Unassigned <span>4</span></button>
+              </div>
+              <label class="search-box"><span>⌕</span><input id="ticketSearch" type="search" placeholder="Search tickets" aria-label="Search tickets"></label>
+            </div>
+            <div class="ticket-list" id="ticketList"></div>
+            <button class="load-more" id="loadMore" type="button">Load more conversations <span>↓</span></button>
+          </div>
+
+          <aside class="right-rail">
+            <section class="channel-panel panel">
+              <div class="panel-heading compact"><div><h2>By channel</h2><p>Where customers are reaching out.</p></div><button class="icon-button" type="button" aria-label="Channel options">...</button></div>
+              <div class="channel-chart"><div class="donut" id="donutChart"><div><strong id="totalConversations">52</strong><span>conversations</span></div></div><div class="channel-legend" id="channelLegend"></div></div>
+            </section>
+            <section class="pulse-panel panel">
+              <div class="panel-heading compact"><div><h2>Team pulse</h2><p>Live team activity.</p></div><span class="live-indicator"><i></i> Live</span></div>
+              <div class="pulse-list">
+                <div class="pulse-item"><span class="avatar avatar-lilac">RK</span><div><strong>Riya Kapoor</strong><span>closed a conversation</span></div><time>2m</time></div>
+                <div class="pulse-item"><span class="avatar avatar-peach">JM</span><div><strong>Jamal Morris</strong><span>replied to a customer</span></div><time>8m</time></div>
+                <div class="pulse-item"><span class="avatar avatar-blue">OT</span><div><strong>Omar Tarek</strong><span>joined the team</span></div><time>14m</time></div>
+              </div>
+              <button class="view-team" type="button">View team activity <span>→</span></button>
+            </section>
+          </aside>
+        </section>
+        <section class="customer-intake-panel panel" aria-labelledby="customerIntakeTitle">
+          <div class="panel-heading compact"><div><span class="drawer-kicker">Customer intake</span><h2 id="customerIntakeTitle">Customer information</h2><p>Collect details for Beauty, Faith and Flavor all in one place.</p></div><span class="live-indicator"><i></i> Tally form</span></div>
+          <div class="customer-intake-frame"><iframe data-tally-src="https://tally.so/embed/Pd7B1e?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" width="100%" height="474" frameborder="0" marginheight="0" marginwidth="0" title="Customer Information"></iframe></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="analyticsBackdrop"><section class="analytics-modal" role="dialog" aria-modal="true" aria-labelledby="analyticsTitle"><div class="modal-header"><div><span class="drawer-kicker">Workspace report</span><h2 id="analyticsTitle">Support analysis</h2><p id="analyticsContext">Ember &amp; Grain performance overview</p></div><button class="icon-button" id="closeAnalytics" type="button" aria-label="Close support analysis">×</button></div><div class="analytics-body"><div class="analysis-summary" id="analysisSummary"></div><div class="analysis-grid"><div class="analysis-card"><span>Resolution rate</span><strong id="analysisResolution">96%</strong><div class="analysis-meter"><i id="analysisResolutionMeter"></i></div></div><div class="analysis-card"><span>Open workload</span><strong id="analysisWorkload">18 tickets</strong><div class="analysis-meter cyan"><i id="analysisWorkloadMeter"></i></div></div></div><div class="analysis-channel"><h3>Channel performance</h3><div id="analysisChannels"></div></div></div></section></div>
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="ticket-drawer" id="ticketDrawer" aria-label="Ticket details" aria-hidden="true">
+    <div class="drawer-header"><div><span class="drawer-kicker">Conversation</span><h2 id="drawerTitle">Ticket details</h2></div><button class="icon-button" id="closeDrawer" type="button" aria-label="Close ticket details">×</button></div>
+    <div class="drawer-body" id="drawerBody"></div>
+    <div class="drawer-reply"><div class="reply-toolbar"><button type="button">Reply</button><button type="button">Note</button><span></span><button type="button">Aa</button><button type="button">⌁</button></div><textarea placeholder="Write a reply..."></textarea><div class="reply-actions"><span>Press ⌘ + Enter to send</span><button class="primary-button" type="button">Send reply <span>→</span></button></div></div>
+  </aside>
+
+  <div class="modal-backdrop" id="modalBackdrop"><div class="new-ticket-modal" role="dialog" aria-modal="true" aria-labelledby="newTicketTitle"><div class="modal-header"><div><span class="drawer-kicker">Create conversation</span><h2 id="newTicketTitle">New support ticket</h2></div><button class="icon-button" id="closeModal" type="button" aria-label="Close new ticket">×</button></div><form id="newTicketForm"><label>Customer name<input name="customer" type="text" placeholder="e.g. Maya Chen" required></label><label>Subject<input name="subject" type="text" placeholder="What can we help with?" required></label><label>Message<textarea name="message" placeholder="Add a little context..." required></textarea></label><div class="modal-actions"><button class="secondary-button" id="cancelModal" type="button">Cancel</button><button class="primary-button" type="submit">Create ticket <span>→</span></button></div></form></div></div>
+
+  <div class="modal-backdrop" id="customerInfoBackdrop"><div class="new-ticket-modal customer-info-modal" role="dialog" aria-modal="true" aria-labelledby="customerInfoTitle"><div class="modal-header"><div><span class="drawer-kicker">Customer intake</span><h2 id="customerInfoTitle">Customer information</h2></div><button class="icon-button" id="closeCustomerInfo" type="button" aria-label="Close customer information">×</button></div><div class="customer-form-embed"><iframe data-tally-src="https://tally.so/embed/Pd7B1e?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" width="100%" height="474" frameborder="0" marginheight="0" marginwidth="0" title="Customer Information"></iframe></div></div></div>
+
+  <script>
+    var d = document, w = "https://tally.so/widgets/embed.js", v = function() {
+      if (typeof Tally !== "undefined") Tally.loadEmbeds();
+      else d.querySelectorAll('iframe[data-tally-src]:not([src])').forEach(function(e) { e.src = e.dataset.tallySrc; });
+    };
+    if (typeof Tally !== "undefined") v();
+    else if (d.querySelector('script[src="' + w + '"]') == null) { var s = d.createElement("script"); s.src = w; s.onload = v; s.onerror = v; d.body.appendChild(s); }
+  </script>
+
+  <script src="https://cdn.botpress.cloud/webchat/v3.7/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2026/09/17/12/20260917122705-6X7WS4MP.js" defer></script>
+
+  <script src="app.js"></script>
+</body>
+</html>
