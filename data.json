@@ -1,0 +1,145 @@
+{
+    "workspaces":  {
+                       "cafe":  {
+                                    "name":  "Ember \u0026 Grain",
+                                    "type":  "Cafe",
+                                    "open":  18,
+                                    "response":  "12m",
+                                    "satisfaction":  "96.4%",
+                                    "resolved":  42,
+                                    "total":  52,
+                                    "channels":  [
+                                                     [
+                                                         "Chat",
+                                                         31
+                                                     ],
+                                                     [
+                                                         "Email",
+                                                         15
+                                                     ],
+                                                     [
+                                                         "Instagram",
+                                                         12
+                                                     ],
+                                                     [
+                                                         "Phone",
+                                                         8
+                                                     ]
+                                                 ],
+                                    "tickets":  [
+                                                    {
+                                                        "id":  1,
+                                                        "customer":  "Maya Chen",
+                                                        "subject":  "My loyalty points did not apply to my order",
+                                                        "status":  "waiting",
+                                                        "statusText":  "Waiting on us",
+                                                        "message":  "I placed an order this morning and noticed my loyalty points were not added.",
+                                                        "time":  "8 min ago"
+                                                    },
+                                                    {
+                                                        "id":  2,
+                                                        "customer":  "Jordan Davis",
+                                                        "subject":  "Is the oat milk latte available iced?",
+                                                        "status":  "open",
+                                                        "statusText":  "Open",
+                                                        "message":  "Can I order the oat milk latte iced and decaf?",
+                                                        "time":  "24 min ago"
+                                                    }
+                                                ]
+                                },
+                       "salon":  {
+                                     "name":  "Vela Studio",
+                                     "type":  "Beauty salon",
+                                     "open":  11,
+                                     "response":  "18m",
+                                     "satisfaction":  "94.8%",
+                                     "resolved":  31,
+                                     "total":  39,
+                                     "channels":  [
+                                                      [
+                                                          "Instagram",
+                                                          22
+                                                      ],
+                                                      [
+                                                          "Chat",
+                                                          14
+                                                      ],
+                                                      [
+                                                          "Email",
+                                                          9
+                                                      ],
+                                                      [
+                                                          "Phone",
+                                                          6
+                                                      ]
+                                                  ],
+                                     "tickets":  [
+                                                     {
+                                                         "id":  11,
+                                                         "customer":  "Aisha Malik",
+                                                         "subject":  "Can I move my appointment to Thursday?",
+                                                         "status":  "waiting",
+                                                         "statusText":  "Waiting on us",
+                                                         "message":  "Can I move my colour appointment to Thursday afternoon?",
+                                                         "time":  "5 min ago"
+                                                     },
+                                                     {
+                                                         "id":  12,
+                                                         "customer":  "Ruby Bell",
+                                                         "subject":  "Which products are safe for sensitive skin?",
+                                                         "status":  "open",
+                                                         "statusText":  "Open",
+                                                         "message":  "Which facial products are best for sensitive skin?",
+                                                         "time":  "32 min ago"
+                                                     }
+                                                 ]
+                                 },
+                       "quran":  {
+                                     "name":  "Noor Academy",
+                                     "type":  "Quran \u0026 Tajweed",
+                                     "open":  14,
+                                     "response":  "9m",
+                                     "satisfaction":  "98.1%",
+                                     "resolved":  38,
+                                     "total":  47,
+                                     "channels":  [
+                                                      [
+                                                          "WhatsApp",
+                                                          20
+                                                      ],
+                                                      [
+                                                          "Email",
+                                                          13
+                                                      ],
+                                                      [
+                                                          "Chat",
+                                                          10
+                                                      ],
+                                                      [
+                                                          "Phone",
+                                                          4
+                                                      ]
+                                                  ],
+                                     "tickets":  [
+                                                     {
+                                                         "id":  21,
+                                                         "customer":  "Zainab Ahmed",
+                                                         "subject":  "Trial lesson timing for my daughter",
+                                                         "status":  "waiting",
+                                                         "statusText":  "Waiting on us",
+                                                         "message":  "Do you have weekday evening trial lesson times available?",
+                                                         "time":  "4 min ago"
+                                                     },
+                                                     {
+                                                         "id":  22,
+                                                         "customer":  "Hassan Khan",
+                                                         "subject":  "How do I access the Tajweed workbook?",
+                                                         "status":  "open",
+                                                         "statusText":  "Open",
+                                                         "message":  "I cannot see the Tajweed workbook in my student portal.",
+                                                         "time":  "18 min ago"
+                                                     }
+                                                 ]
+                                 }
+                   }
+}

@@ -155,6 +155,17 @@ function openAnalytics() {
 
 function closeAnalytics() { $('#analyticsBackdrop').classList.remove('is-open'); $('#analyticsBackdrop').setAttribute('aria-hidden', 'true'); }
 
+function positionBotpressChat() {
+  const host = document.querySelector('#fab-root');
+  const shadow = host && host.shadowRoot;
+  if (!shadow || shadow.querySelector('#hearthline-botpress-position')) return Boolean(shadow);
+  const style = document.createElement('style');
+  style.id = 'hearthline-botpress-position';
+  style.textContent = '.bpFabWrapper, .bpMessagePreview { left: 24px !important; right: auto !important; }';
+  shadow.appendChild(style);
+  return true;
+}
+
 function addTicket(event) {
   event.preventDefault();
   const formData = new FormData(event.currentTarget);
@@ -197,3 +208,4 @@ $('#mobileMenu').addEventListener('click', () => $('#sidebar').classList.toggle(
 document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { closeDrawer(); closeModal(); closeCustomerInfo(); closeAnalytics(); $('#sidebar').classList.remove('is-open'); } });
 
 renderWorkspace();
+const botpressPositionTimer = setInterval(() => { if (positionBotpressChat()) clearInterval(botpressPositionTimer); }, 250);
