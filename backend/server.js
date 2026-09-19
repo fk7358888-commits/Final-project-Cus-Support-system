@@ -59,6 +59,36 @@ async function sendTicketEmail(ticket, workspaceName) {
   return { sent: true, to: emailTo };
 }
 
+async function triggerMakeWebhook(ticket, workspaceName) {
+  const webhookUrl = process.env.MAKE_WEBHOOK_URL;
+  if (!webhookUrl) {
+    console.log('Make webhook skipped: MAKE_WEBHOOK_URL is not configured.');
+    return { sent: false, reason: 'webhook-not-configured' };
+  }
+
+  const payload = {
+    workspace: workspaceName,
+    customer: ticket.customer,
+    subject: ticket.subject,
+    message: ticket.message,
+    status: ticket.status || 'open',
+    time: ticket.time || 'just now',
+    source: 'hearthline-support'
+  };
+
+  const response = await fetch(webhookUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) {
+    throw new Error(`Make webhook failed with status ${response.status}`);
+  }
+
+  return { sent: true, status: response.status };
+}
+
 async function findWorkspace(id) {
   if (!useDatabase) return getFallbackWorkspace(id);
   const result = await pool.query('SELECT id, name, type, open_tickets AS open, response_time AS response, satisfaction, resolved_tickets AS resolved, total_conversations AS total FROM workspaces WHERE id = $1', [id]);
@@ -130,9 +160,11 @@ app.post('/api/workspaces/:workspaceId/tickets', requireWorkspace, async (req, r
       writeFallback(data);
 
       try {
-        await sendTicketEmail(publicTicket(ticket), req.workspace.name);
+        const createdTicket = publicTicket(ticket);
+        await sendTicketEmail(createdTicket, req.workspace.name);
+        await triggerMakeWebhook(createdTicket, req.workspace.name);
       } catch (error) {
-        console.warn('Failed to send email automation for fallback storage', error);
+        console.warn('Failed to send automations for fallback storage', error);
       }
 
       return res.status(201).json(publicTicket(ticket));
@@ -144,8 +176,9 @@ app.post('/api/workspaces/:workspaceId/tickets', requireWorkspace, async (req, r
     const createdTicket = publicTicket(result.rows[0]);
     try {
       await sendTicketEmail(createdTicket, req.workspace.name);
+      await triggerMakeWebhook(createdTicket, req.workspace.name);
     } catch (error) {
-      console.warn('Failed to send email automation for database-backed ticket', error);
+      console.warn('Failed to send automations for database-backed ticket', error);
     }
 
     res.status(201).json(createdTicket);
