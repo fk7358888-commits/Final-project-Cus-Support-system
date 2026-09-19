@@ -50,6 +50,8 @@ const workspaceData = {
   }
 };
 
+const API_BASE_URL = window.APP_CONFIG && window.APP_CONFIG.API_BASE_URL ? window.APP_CONFIG.API_BASE_URL : 'http://localhost:3000';
+
 let currentWorkspace = 'cafe';
 let activeFilter = 'all';
 let searchTerm = '';
@@ -57,6 +59,22 @@ let extraTicketsVisible = false;
 
 const $ = (selector) => document.querySelector(selector);
 const ticketList = $('#ticketList');
+
+async function loadWorkspaceData(workspaceId) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/workspaces/${workspaceId}`);
+    if (!response.ok) throw new Error(`Request failed (${response.status})`);
+    const payload = await response.json();
+    workspaceData[workspaceId] = {
+      ...workspaceData[workspaceId],
+      ...payload,
+      tickets: Array.isArray(payload.tickets) ? payload.tickets : workspaceData[workspaceId].tickets,
+      channels: Array.isArray(payload.channels) ? payload.channels : workspaceData[workspaceId].channels
+    };
+  } catch (error) {
+    console.warn('Falling back to local workspace data:', error);
+  }
+}
 
 function renderMetrics(data) {
   $('#breadcrumbWorkspace').textContent = data.name;
@@ -166,20 +184,62 @@ function positionBotpressChat() {
   return true;
 }
 
-function addTicket(event) {
+async function addTicket(event) {
   event.preventDefault();
   const formData = new FormData(event.currentTarget);
+  const customer = formData.get('customer');
+  const subject = formData.get('subject');
+  const message = formData.get('message');
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/workspaces/${currentWorkspace}/tickets`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ customer, subject, message })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Ticket save failed (${response.status})`);
+    }
+
+    const ticket = await response.json();
+    const data = workspaceData[currentWorkspace];
+    data.tickets = [
+      {
+        id: ticket.id,
+        initials: ticket.initials || customer.split(' ').map((part) => part[0]).join('').slice(0, 2).toUpperCase(),
+        customer,
+        subject,
+        time: ticket.time || 'just now',
+        status: 'open',
+        statusText: 'Open',
+        avatar: 'avatar-mint',
+        unread: true,
+        message,
+        note: 'Newly created ticket. Assign a teammate when ready.'
+      },
+      ...data.tickets
+    ];
+    data.open += 1;
+    closeModal();
+    renderWorkspace();
+    return;
+  } catch (error) {
+    console.warn('API save unavailable, keeping local-only ticket state:', error);
+  }
+
   const data = workspaceData[currentWorkspace];
-  data.tickets.unshift({ id: Date.now(), initials: formData.get('customer').split(' ').map((part) => part[0]).join('').slice(0, 2).toUpperCase(), customer: formData.get('customer'), subject: formData.get('subject'), time: 'just now', status: 'open', statusText: 'Open', avatar: 'avatar-mint', unread: true, message: formData.get('message'), note: 'Newly created ticket. Assign a teammate when ready.' });
+  data.tickets.unshift({ id: Date.now(), initials: customer.split(' ').map((part) => part[0]).join('').slice(0, 2).toUpperCase(), customer, subject, time: 'just now', status: 'open', statusText: 'Open', avatar: 'avatar-mint', unread: true, message, note: 'Newly created ticket. Assign a teammate when ready.' });
   data.open += 1;
   closeModal();
   renderWorkspace();
 }
 
-document.querySelectorAll('.workspace-item').forEach((button) => button.addEventListener('click', () => {
+document.querySelectorAll('.workspace-item').forEach((button) => button.addEventListener('click', async () => {
   currentWorkspace = button.dataset.workspace;
   document.querySelectorAll('.workspace-item').forEach((item) => item.classList.toggle('is-active', item === button));
   extraTicketsVisible = false;
+  await loadWorkspaceData(currentWorkspace);
   renderWorkspace();
 }));
 
@@ -207,5 +267,8 @@ $('#newTicketForm').addEventListener('submit', addTicket);
 $('#mobileMenu').addEventListener('click', () => $('#sidebar').classList.toggle('is-open'));
 document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { closeDrawer(); closeModal(); closeCustomerInfo(); closeAnalytics(); $('#sidebar').classList.remove('is-open'); } });
 
-renderWorkspace();
+(async () => {
+  await loadWorkspaceData(currentWorkspace);
+  renderWorkspace();
+})();
 const botpressPositionTimer = setInterval(() => { if (positionBotpressChat()) clearInterval(botpressPositionTimer); }, 250);

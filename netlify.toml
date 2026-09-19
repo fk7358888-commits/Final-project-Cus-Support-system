@@ -1,0 +1,5 @@
+[build]
+  publish = "."
+
+# Set BACKEND_URL in Netlify and replace this target with the deployed API host.
+# Netlify serves the frontend; PostgreSQL must remain behind the backend API.

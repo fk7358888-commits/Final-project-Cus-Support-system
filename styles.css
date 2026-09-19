@@ -44,6 +44,8 @@ button { border: 0; cursor: pointer; color: inherit; }
 button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid rgba(105, 207, 169, .42); outline-offset: 2px; }
 .app-shell { display: flex; min-height: 100vh; }
 body[data-workspace="salon"] .main-content { background-image: linear-gradient(90deg, rgba(244, 250, 252, .98) 0%, rgba(244, 250, 252, .9) 48%, rgba(225, 248, 253, .72) 100%), url("https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1800&q=85"); background-position: center; background-size: cover; background-attachment: fixed; }
+body[data-workspace="cafe"] .main-content { background-image: linear-gradient(90deg, rgba(244, 250, 252, .98) 0%, rgba(244, 250, 252, .9) 48%, rgba(225, 248, 253, .7) 100%), url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1800&q=85"); background-position: center; background-size: cover; background-attachment: fixed; }
+body[data-workspace="quran"] .main-content { background-image: linear-gradient(90deg, rgba(244, 250, 252, .98) 0%, rgba(244, 250, 252, .92) 48%, rgba(225, 248, 253, .72) 100%), url("https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=1800&q=85"); background-position: center; background-size: cover; background-attachment: fixed; }
 .sidebar { width: 258px; flex: 0 0 258px; padding: 28px 15px 18px; background: #fbfcfb; border-right: 1px solid var(--line); display: flex; flex-direction: column; }
 .brand-lockup { display: flex; align-items: center; gap: 10px; margin: 0 12px 45px; }
 .brand-mark { width: 32px; height: 32px; display: grid; place-items: center; background: var(--ink); color: var(--mint); font: 700 22px "Space Grotesk"; border-radius: 10px 10px 10px 3px; }
